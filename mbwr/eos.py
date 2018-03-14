@@ -1,7 +1,5 @@
 import numpy as np
-from scipy.optimize import brentq
 import math
-import matplotlib.pyplot as plt
 
 def asum(xi,t,r):
     """Calculate the sum of ai terms of the MWBR EOS."""
@@ -44,7 +42,7 @@ def bsum(xi,t,r):
     return total*F
 
 def mwbrP(dens,tmp):
-    X = np.loadtxt("para2.dat")
+    X = np.loadtxt("./data/para2.dat")
     press = tmp*dens + asum(X,tmp,dens) + bsum(X,tmp,dens)
     return press
 
@@ -89,7 +87,7 @@ def dsum(xi,t,r):
     return total*F
 
 def dPdV(dens,tmp):
-    X = np.loadtxt("../data/para2.dat")
+    X = np.loadtxt("./data/para.dat")
     dp = tmp + csum(X,tmp,dens) - 6*dens*bsum(X,tmp,dens) + dsum(X,tmp,dens)
     return dp
 

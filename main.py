@@ -11,7 +11,6 @@ dP = np.array([])
 #    p = np.append(p,mwbrP(ri,0.8))
 #    dP = np.append(dP,(ri,0.8))
 #print np.diff(p)/0.005
-#print dP
 for ti in trange:    
     #d1 = newton(dPdV,0.2,args=(ti,),maxiter=400)
     #d2 = newton(dPdV,0.5,args=(ti,),maxiter=400)

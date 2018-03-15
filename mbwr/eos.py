@@ -1,7 +1,41 @@
 import numpy as np
 import math
 
-def asum(xi,t,r):
+xi = np.array([
+    0.8623085097507421,
+    2.976218765822098,
+    -8.402230115796038,
+    0.1054136629203555,
+    -0.8564583828174598,
+    1.582759470107601,
+    0.7639421948305453,
+    1.753173414312048,
+    2.798291772190376e+03,
+    -4.8394220260857657e-02,
+    0.9963265197721935,
+    -3.698000291272493e+01,
+    2.084012299434647e+01,
+    8.305402124717285e+01,
+    -9.574799715203068e+02,
+    -1.477746229234994e+02,
+    6.39860785271505e+01,
+    1.603993673294834e+01,
+    6.805916615864377e+01,
+    -2.791293578795945e+03,
+    -6.245128304568454,
+    -8.116836104958410e+03,
+    1.488735559561229e+01,
+    -1.059346754655084e+04,
+    -1.131607632802822e+02,
+    -8.867771540418822e+03,
+    -3.986982844450543e+01,
+    -4.689270299917261e+03,
+    2.593535277438717e+02,
+    -2.694523589434903e+03,
+    -7.218487631550215e+02,
+    1.721802063863269e+02])
+
+def asum(t,r):
     """Calculate the sum of ai terms of the MWBR EOS."""
     tsqrt = np.sqrt(t)
     t2 = t**2
@@ -21,7 +55,7 @@ def asum(xi,t,r):
         exp += 1
     return total
 
-def bsum(xi,t,r):
+def bsum(t,r):
     """Calculate the sum of bi terms in the MWBR EOS"""
     F = math.exp(-3*r**2)
     t2 = t**2
@@ -41,9 +75,10 @@ def bsum(xi,t,r):
         exp += 2
     return total*F
 
-def mwbrP(dens,tmp):
-    X = np.loadtxt("./data/para2.dat")
-    press = tmp*dens + asum(X,tmp,dens) + bsum(X,tmp,dens)
+def mbwrP(dens,tmp):
+    """Calculate the pressure for the density and temperature parameters."""
+    #X = np.loadtxt("./data/para.dat")
+    press = tmp*dens + asum(tmp,dens) + bsum(tmp,dens)
     return press
 
 def csum(xi,t,r):
